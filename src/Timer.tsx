@@ -4,7 +4,7 @@ interface TimerProps {
     duration: number; // Initial duration when the game starts
 }
 
-const Timer: React.FC<TimerProps> = ({ duration }) => {
+const Timer: React.FC<TimerProps> = ({duration}) => {
     const [timeLeft, setTimeLeft] = useState<number>(duration);
     const [isRunning, setIsRunning] = useState<boolean>(false);
     const [gameOver, setGameOver] = useState<boolean>(false);
@@ -12,7 +12,7 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
     //THIS WORKS
     // Function to start the timer
     const startGame = async () => {
-        const param = new URLSearchParams({duration : "10000"})
+        const param = new URLSearchParams({duration : String(duration)})
         const response = await fetch(`http://localhost:8080/clock/start?${param}`, {
             mode: "cors",
             method: "POST",
@@ -20,9 +20,9 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
         });
         if (response.ok) {
             setIsRunning(true);
-            console.log("Game Started");
+            // console.log("Game Started");
         } else {
-            console.error("Failed to start game");
+            // console.error("Failed to start game");
         }
     };
 
@@ -34,27 +34,27 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
             headers: { "Content-Type": "application/json" },
         });
         if (response.ok) {
-            console.log("Time added");
+            // console.log("Time added");
         } else {
-            console.error("Failed to add time");
+            // console.error("Failed to add time");
         }
 };
 
     // Function to get the current time left from the backend
     const fetchTimeLeft = async () => {
-        console.log("Fetch started")
+        // console.log("Fetch started")
         try {
             const response = await fetch("http://localhost:8080/clock/timer");
             const time = await response.json();
-            console.log("Fetched Time: ", time);
+            // console.log("Fetched Time: ", time);
             setTimeLeft((prevTime) => {
-                console.log("Updated from", prevTime, "to", time);
+                // console.log("Updated from", prevTime, "to", time);
                 return time;
             });
         } catch (error) {
-            console.error("Error in fetch: ", error);
+            // console.error("Error in fetch: ", error);
         }
-        console.log("Fetch ended")
+        // console.log("Fetch ended")
     };
 
     // Start timer when the component is mounted
@@ -69,9 +69,9 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
         // const interval = setInterval(fetchTimeLeft, 1000); // Update the time every second
         const interval = setInterval(() => {
             const fetchData = async () => {
-                console.log("Time Pre-fetch: ", timeLeft);
+                // console.log("Time Pre-fetch: ", timeLeft);
                 await fetchTimeLeft();
-                console.log("Time Post-fetch: ", timeLeft);
+                // console.log("Time Post-fetch: ", timeLeft);
             };
 
             fetchData();

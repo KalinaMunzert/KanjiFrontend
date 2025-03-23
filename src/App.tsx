@@ -2,6 +2,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css'
 import { useEffect, useState } from 'react';
 import Timer from './Timer';
+import WordDisplay from './WordDisplay';
+import Game from './Game';
+import GameUI from './GameUI';
+import GameUITEST from './GameUITEST';
 
 function App() {
   // const [timeLeft, setTimeLeft] = useState<number>();
@@ -24,25 +28,25 @@ function App() {
   // }
 //-------------------------------------------------------------------
   // I honestly can't tell if this works or not
-  function GameOver() {
-    const [gameOver, setGameOver] = useState<boolean | null>(null);
+  // function GameOver() {
+  //   const [gameOver, setGameOver] = useState<boolean | null>(null);
 
-    useEffect(() => {
-      async function fetchGameOver () {
-        const response = await fetch("http://localhost:8080/clock/game-over", {
-          mode: "cors",
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        });
-        const text: string = await response.text();
-        setGameOver(text.trim() === "true");
-      }
+  //   useEffect(() => {
+  //     async function fetchGameOver () {
+  //       const response = await fetch("http://localhost:8080/clock/game-over", {
+  //         mode: "cors",
+  //         method: "GET",
+  //         headers: { "Content-Type": "application/json" },
+  //       });
+  //       const text: string = await response.text();
+  //       setGameOver(text.trim() === "true");
+  //     }
 
-      fetchGameOver();
-    }, []);
+  //     fetchGameOver();
+  //   }, []);
 
-    return <p>Game Over: {gameOver === null ? "Loading..." : String(gameOver)}</p>;
-  }
+  //   return <p>Game Over: {gameOver === null ? "Loading..." : String(gameOver)}</p>;
+  // }
 
   // function GameOver() {
   //   const gameOver: boolean = getGameOver();
@@ -83,7 +87,10 @@ function App() {
 
   return (
     <div>
-      <Timer duration={10000} />
+      <Timer duration={1000000} />
+      {/* <WordDisplay /> */}
+      {/* <Game /> */}
+      <GameUITEST />
     </div>
   )
 }

@@ -40,3 +40,34 @@
 .read-the-docs {
   color: #888;
 }
+
+.kanji-tile {
+  font-size: 36px;  /* Controls font size */
+  font-weight: bold;
+  text-align: center;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  margin: 5px;
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column; /* Ensures rows are stacked vertically */
+  gap: 5px; /* Optional: spacing between rows */
+}
+
+.board-row {
+  display: flex; /* Ensures tiles in the row are aligned horizontally */
+  gap: 5px; /* Optional: spacing between tiles */
+}
+
+.board-tile {
+  width: 50px; /* Set the width of each tile */
+  height: 50px; /* Set the height of each tile */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(236, 236, 236); /* Optional: tile background color */
+  border: 1px solid black; /* Optional: tile border */
+  font-size: 18px; /* Optional: text size */
+}
