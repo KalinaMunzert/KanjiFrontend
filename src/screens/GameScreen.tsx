@@ -20,7 +20,7 @@ interface Word {
     exampleSentence: string;
 }
 
-const GameUITEST = () => {
+const GameUI = () => {
     const [board, setBoard] = useState<Tile[][] | null>(null);
     const [isGameRunning, setIsGameRunning] = useState(false);
   
@@ -144,4 +144,4 @@ const GameUITEST = () => {
     );
   };
   
-  export default GameUITEST;
+  export default GameUI;
