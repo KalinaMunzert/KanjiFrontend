@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const GamePage = () => {
+interface GameScreenProps {
+  onGameOver: () => void;
+}
+
+const GamePage: React.FC<GameScreenProps> = ({onGameOver}) => {
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(180); 
-  const [recentWords, setRecentWords] = useState(['日本', '海外', '相手', '言葉', '読書', '帰国']);
+  const [recentWords, setRecentWords] = useState([' ', ' ', ' ', ' ', ' ', ' ', '', '', '', '']);
   const [selectedChars, setSelectedChars] = useState([]);
   
   const [grid, setGrid] = useState([
     [null, null, null, null],
-    ['学', '校', null, null],
-    [null, '時', '自', null],
-    ['雨', '水', '青', '葉']
+    ['朝', null, null, null],
+    [null, null, '食', null],
+    [null, null, null, null]
   ]);
 
   const formatTime = (seconds) => {
@@ -52,7 +56,7 @@ const GamePage = () => {
     <div className="container my-5">
       <div className="row">
         <div className="col-md-7">
-          <h1 className="mb-4">Game Title</h1>
+          <h1 className="mb-4">Kanji 2048</h1>
           
           <div className="bg-light p-3 rounded" style={{ maxWidth: '500px' }}>
             {grid.map((row, rowIndex) => (
@@ -82,7 +86,7 @@ const GamePage = () => {
         </div>
         
         <div className="col-md-5">
-          <div className="d-flex justify-content-end">
+          <div className="d-flex justify-content-center">
             <h2>Score: {score}</h2>
           </div>
           

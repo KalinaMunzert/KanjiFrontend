@@ -1,4 +1,8 @@
-const OpeningScreen : React.FC = () => {
+interface OpeningScreenProps {
+    onStart: () => void;
+}
+
+const OpeningPage : React.FC<OpeningScreenProps> = ({onStart}) => {
     return (
         <>
             <div>
@@ -7,7 +11,7 @@ const OpeningScreen : React.FC = () => {
             <div class="container text-center mt-5">
                 <div class="row align-items-start">
                     <div class="col">
-                        <button type="button" class="btn btn-danger btn-lg">PLAY</button>
+                        <button type="button" class="btn btn-danger btn-lg" onClick={onStart}>PLAY</button>
                     </div>
                     <div class="col">
                         <button type="button" class="btn btn-primary btn-lg">TUTORIAL</button>
@@ -18,4 +22,4 @@ const OpeningScreen : React.FC = () => {
     );
 };
 
-export default OpeningScreen;
+export default OpeningPage;

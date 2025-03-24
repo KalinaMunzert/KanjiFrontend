@@ -10,6 +10,7 @@ interface Tile {
     kanji: string;
     x: number;
     y: number;
+    color: string;
 }
 
 interface Word {
