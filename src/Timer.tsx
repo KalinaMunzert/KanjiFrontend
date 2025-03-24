@@ -12,7 +12,7 @@ const Timer: React.FC<TimerProps> = ({duration}) => {
     //THIS WORKS
     // Function to start the timer
     const startGame = async () => {
-        const param = new URLSearchParams({duration : String(duration)})
+        const param = new URLSearchParams({duration : String(duration)});
         const response = await fetch(`http://localhost:8080/clock/start?${param}`, {
             mode: "cors",
             method: "POST",
@@ -26,20 +26,6 @@ const Timer: React.FC<TimerProps> = ({duration}) => {
         }
     };
 
-    // Function to add time when a word is created
-    const onWordCreated = async () => {
-        const response = await fetch("http://localhost:8080/clock/word-created", {
-            mode: "cors",
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-        });
-        if (response.ok) {
-            // console.log("Time added");
-        } else {
-            // console.error("Failed to add time");
-        }
-};
-
     // Function to get the current time left from the backend
     const fetchTimeLeft = async () => {
         // console.log("Fetch started")
@@ -47,10 +33,7 @@ const Timer: React.FC<TimerProps> = ({duration}) => {
             const response = await fetch("http://localhost:8080/clock/timer");
             const time = await response.json();
             // console.log("Fetched Time: ", time);
-            setTimeLeft((prevTime) => {
-                // console.log("Updated from", prevTime, "to", time);
-                return time;
-            });
+            setTimeLeft(time);
         } catch (error) {
             // console.error("Error in fetch: ", error);
         }
@@ -90,8 +73,8 @@ const Timer: React.FC<TimerProps> = ({duration}) => {
     return (
         <div>
             <p>Time Left: {timeLeft / 1000} seconds</p>
-            <button onClick={onWordCreated} disabled={!isRunning}>Create Word</button>
-            <p>Game Over: {gameOver === null ? "Loading..." : String(gameOver)}</p>
+            {/* <button onClick={onWordCreated} disabled={!isRunning}>Create Word</button> */}
+            {/* <p>Game Over: {gameOver === null ? "Loading..." : String(gameOver)}</p> */}
         </div>
     );
 };

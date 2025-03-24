@@ -20,9 +20,10 @@ interface Word {
     exampleSentence: string;
 }
 
-const GameUI = () => {
+const GameScreen = () => {
     const [board, setBoard] = useState<Tile[][] | null>(null);
     const [isGameRunning, setIsGameRunning] = useState(false);
+    const [recentWords, setRecentWords] = useState<string>();
   
     // Fetch the game board from the backend
     const fetchBoard = async () => {
@@ -64,12 +65,16 @@ const GameUI = () => {
     const moveTiles = async (direction: string) => {
       const response = await fetch(`http://localhost:8080/game/move?${direction}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ direction}),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ direction }),
       });
   
+  
+      console.log("response");
+      const data = await response.text();
+      console.log(data);
+      // console.log(response.text());
+      // console.log(response);
       if (response.ok) {
         // const newWord: string = await response.json();
         // console.log('New word made: ', newWord);
@@ -144,4 +149,4 @@ const GameUI = () => {
     );
   };
   
-  export default GameUI;
+  export default GameScreen;
