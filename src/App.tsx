@@ -10,10 +10,10 @@ function App() {
 
   return (
     <div>
-      <Timer duration={300000} />
-      <Game />
-      <GameScreen />
-      {/* <OpeningScreen /> */}
+      {/* <Timer duration={300000} /> */}
+      {/* <Game /> */}
+      {/* <GameScreen /> */}
+      <OpeningScreen />
     </div>
   )
 }
